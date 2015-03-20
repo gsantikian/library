@@ -26,10 +26,18 @@ Library.prototype.removeBook = function(bookTitle) {
   }
 };
 
-Library.prototype.displayAllBooks = function () {
+Library.prototype.displayAllBooks = function() {
   this.books.forEach(function(book) {
     console.log(book.title + " / " + book.author + " / " + book.genre + " / " + book.length + " / " + book.status);
-  })
+  });
+};
+
+Library.prototype.displayBooksByGenre = function(genre) {
+  this.books.forEach(function(book) {
+    if (book.genre === genre) {
+      console.log(book.title + " / " + book.author + " / " + book.genre + " / " + book.length + " / " + book.status);
+    }
+  });
 };
 
 function userInput(str) {
@@ -38,11 +46,13 @@ function userInput(str) {
 
 var catch22 = new Book("Catch-22", "Joseph Heller", "Fiction", "322");
 var f451 = new Book("Fahrenheit 451", "Ray Bradbury", "Fiction", "453");
+var shortHistory = new Book("A Short History of Nearly Everything", "Bill Bryson", "Non-Fiction", "567");
 
 var library = new Library();
 
 library.addBook(catch22);
 library.addBook(f451);
+library.addBook(shortHistory);
 
 var quit = false;
 
@@ -72,6 +82,9 @@ while (!quit) {
       library.displayAllBooks();
       break;
     case '4':
+      console.log("Books by genre:");
+      genre = userInput("Enter genre to search by:");
+      library.displayBooksByGenre(genre);
       break;
     case '5':
       break;
