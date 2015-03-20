@@ -26,6 +26,12 @@ Library.prototype.removeBook = function(bookTitle) {
   }
 };
 
+Library.prototype.displayAllBooks = function () {
+  this.books.forEach(function(book) {
+    console.log(book.title + " / " + book.author + " / " + book.genre + " / " + book.length + " / " + book.status);
+  })
+};
+
 function userInput(str) {
   return sget(str).trim();
 }
@@ -62,6 +68,8 @@ while (!quit) {
       library.removeBook(bookTitle);
       break;
     case '3':
+      console.log("All books:");
+      library.displayAllBooks();
       break;
     case '4':
       break;
