@@ -57,17 +57,7 @@ function userInput(str) {
   return sget(str).trim();
 }
 
-var catch22 = new Book("Catch-22", "Joseph Heller", "Fiction", "322");
-var f451 = new Book("Fahrenheit 451", "Ray Bradbury", "Fiction", "453");
-var shortHistory = new Book("A Short History of Nearly Everything", "Bill Bryson", "Non-Fiction", "567");
-var something = new Book("Something Happened", "Joseph Heller", "Fiction", "456");
-
 var library = new Library();
-
-library.addBook(catch22);
-library.addBook(f451);
-library.addBook(shortHistory);
-library.addBook(something);
 
 var quit = false;
 console.log("Library Inventory System");
