@@ -8,6 +8,10 @@ function Book(title, author, genre, length) {
   this.status = "Checked-In";
 }
 
+Book.prototype.printBookDetails = function() {
+  console.log(this.title + " / " + this.author + " / " + this.genre + " / " + this.length + " / " + this.status);
+};
+
 function Library() {
   this.books = [];
 }
@@ -28,14 +32,14 @@ Library.prototype.removeBook = function(bookTitle) {
 
 Library.prototype.displayAllBooks = function() {
   this.books.forEach(function(book) {
-    console.log(book.title + " / " + book.author + " / " + book.genre + " / " + book.length + " / " + book.status);
+    book.printBookDetails();
   });
 };
 
 Library.prototype.displayBooksByGenre = function(genre) {
   this.books.forEach(function(book) {
     if (book.genre === genre) {
-      console.log(book.title + " / " + book.author + " / " + book.genre + " / " + book.length + " / " + book.status);
+      book.printBookDetails();
     }
   });
 };
@@ -43,7 +47,7 @@ Library.prototype.displayBooksByGenre = function(genre) {
 Library.prototype.searchByTitle = function(title) {
   this.books.forEach(function(book) {
     if (book.title === title) {
-      console.log(book.title + " / " + book.author + " / " + book.genre + " / " + book.length + " / " + book.status);
+      book.printBookDetails();
       return;
     }
   });
