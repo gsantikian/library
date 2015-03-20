@@ -30,35 +30,20 @@ Library.prototype.removeBook = function(bookTitle) {
   }
 };
 
-Library.prototype.displayAllBooks = function() {
-  this.books.forEach(function(book) {
-    book.printBookDetails();
-  });
-};
-
-Library.prototype.displayBooksByGenre = function(genre) {
-  this.books.forEach(function(book) {
-    if (book.genre === genre) {
+Library.prototype.displayBooks = function() {
+  var propertyName = arguments[0];
+  var value = arguments[1];
+  if (arguments.length > 0) {
+    this.books.forEach(function(book) {
+      if (book[propertyName] === value) {
+        book.printBookDetails();
+      }
+    });
+  } else {
+    this.books.forEach(function(book) {
       book.printBookDetails();
-    }
-  });
-};
-
-Library.prototype.searchByTitle = function(title) {
-  this.books.forEach(function(book) {
-    if (book.title === title) {
-      book.printBookDetails();
-      return;
-    }
-  });
-};
-
-Library.prototype.searchByAuthor = function(author) {
-  this.books.forEach(function(book) {
-    if (book.author === author) {
-      console.log(book.title + " / " + book.author + " / " + book.genre + " / " + book.length + " / " + book.status);
-    }
-  });
+    });
+  }
 };
 
 function userInput(str) {
@@ -102,22 +87,22 @@ while (!quit) {
       break;
     case '3':
       console.log("All books:");
-      library.displayAllBooks();
+      library.displayBooks();
       break;
     case '4':
       console.log("Books by genre:");
       genre = userInput("Enter genre to search by:");
-      library.displayBooksByGenre(genre);
+      library.displayBooks("genre", genre);
       break;
     case '5':
       console.log("Search by title");
       title = userInput("Enter title:");
-      library.searchByTitle(title);
+      library.displayBooks("title", title);
       break;
     case '6':
       console.log("Search by author");
       author = userInput("Enter author:");
-      library.searchByAuthor(author);
+      library.displayBooks("author", author);
       break;
     case '7':
       console.log("Goodbye.");
