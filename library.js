@@ -40,6 +40,15 @@ Library.prototype.displayBooksByGenre = function(genre) {
   });
 };
 
+Library.prototype.searchByTitle = function(title) {
+  this.books.forEach(function(book) {
+    if (book.title === title) {
+      console.log(book.title + " / " + book.author + " / " + book.genre + " / " + book.length + " / " + book.status);
+      return;
+    }
+  });
+}
+
 function userInput(str) {
   return sget(str).trim();
 }
@@ -87,6 +96,9 @@ while (!quit) {
       library.displayBooksByGenre(genre);
       break;
     case '5':
+      console.log("Search by title");
+      title = userInput("Enter title:");
+      library.searchByTitle(title);
       break;
     case '6':
       break;
