@@ -16,6 +16,16 @@ Library.prototype.addBook = function(book) {
   this.books.push(book);
 };
 
+Library.prototype.removeBook = function(bookTitle) {
+  for (var i = 0, len = this.books.length; i < len; i++) {
+    if (this.books[i].title === bookTitle) {
+      console.log(this.books[i].title + " has been removed.");
+      this.books.splice(i, 1);
+      break;
+    }
+  }
+};
+
 function userInput(str) {
   return sget(str).trim();
 }
@@ -28,7 +38,7 @@ var library = new Library();
 library.addBook(catch22);
 library.addBook(f451);
 
-var quit = false
+var quit = false;
 
 while (!quit) {
   console.log(library);
@@ -44,9 +54,12 @@ while (!quit) {
       var genre = userInput("Enter genre:");
       var pages = userInput("Enter number of pages:");
       library.addBook(new Book(title, author, genre, pages));
-      console.log("Book added to inventory.");
+      console.log(title + " added to inventory.");
       break;
     case '2':
+      console.log("Remove book");
+      var bookTitle = userInput("Enter title of book to remove:");
+      library.removeBook(bookTitle);
       break;
     case '3':
       break;
