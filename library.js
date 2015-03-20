@@ -21,10 +21,13 @@ Library.prototype.addBook = function(book) {
 };
 
 Library.prototype.removeBook = function(bookTitle) {
+  this.books.splice(this.findBookPosition(bookTitle), 1);
+};
+
+Library.prototype.findBookPosition = function(bookTitle) {
   for (var i = 0, len = this.books.length; i < len; i++) {
     if (this.books[i].title === bookTitle) {
-      this.books.splice(i, 1);
-      break;
+      return i;
     }
   }
 };
